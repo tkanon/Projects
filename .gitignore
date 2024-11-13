@@ -399,6 +399,7 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-# Outside of template
+# Outside of template (Teemu)
 *.exe
+*.exe.lnk
 [Ee]xe/
