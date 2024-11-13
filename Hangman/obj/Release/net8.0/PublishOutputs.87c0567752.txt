@@ -1,0 +1,5 @@
+C:\Users\teemu\OneDrive\Työpöytä\projects\Hangman\Hangman\Hangman.exe
+C:\Users\teemu\OneDrive\Työpöytä\projects\Hangman\Hangman\Hangman.dll
+C:\Users\teemu\OneDrive\Työpöytä\projects\Hangman\Hangman\Hangman.deps.json
+C:\Users\teemu\OneDrive\Työpöytä\projects\Hangman\Hangman\Hangman.runtimeconfig.json
+C:\Users\teemu\OneDrive\Työpöytä\projects\Hangman\Hangman\Hangman.pdb
