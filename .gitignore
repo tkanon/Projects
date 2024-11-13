@@ -401,5 +401,5 @@ FodyWeavers.xsd
 
 # Outside of template (Teemu)
 *.exe
-*.exe.lnk
+*.lnk
 [Ee]xe/
