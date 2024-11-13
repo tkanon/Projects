@@ -27,8 +27,8 @@ namespace Hangman
                         }
                         if (input == "N") { break; }
                   }
-                  Console.WriteLine("This window will automatically close in 5 seconds...");
-                  System.Threading.Thread.Sleep(5000);
+                  Console.WriteLine("This window will automatically close in 3 seconds...");
+                  System.Threading.Thread.Sleep(3000);
             }
       }
 }
