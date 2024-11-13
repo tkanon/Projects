@@ -11,12 +11,13 @@ namespace Hangman
                   while (true)
                   {
                         GameLogic.NewGame();
+                        Console.WriteLine();
                         Console.WriteLine("Do you want to play again? Y/N");
-                        string input = "";
-                        while ((input != "Y") && input != "N")
+                        string? input = null;
+                        while (input != "Y" && input != "N")
                         {
                               input = Console.ReadLine().ToUpper();
-                              if (input == "Y") { break; }
+                              if (input == "Y") { Console.WriteLine(); break; }
                               else if (input == "N")
                               {
                                     Console.WriteLine("Thanks for playing!");
