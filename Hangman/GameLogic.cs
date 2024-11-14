@@ -25,7 +25,7 @@ namespace Hangman
                   {
                         string letter = Convert.ToString(targetWordInput[i]); // For clarity of code
                         targetWord.Add(letter);
-                        if (!checkedLetters.Contains(letter))
+                        if (!checkedLetters.Contains(letter) && letter != " ")
                         {
                               checkedLetters.Add(letter);
                               uniqueLetters++;
@@ -63,6 +63,7 @@ namespace Hangman
                         {
                               Console.Write(letter + " ");
                         }
+                        else if (letter == " ") { Console.Write(" "); }
                         else
                         {
                               Console.Write("_ ");
@@ -75,10 +76,10 @@ namespace Hangman
             {
                   Console.Write("Guess a letter: ");
                   string? guess = "";
-                  while (guess.Length != 1 || guessedLetters.Contains(guess))
+                  while (guess.Length != 1 || string.IsNullOrWhiteSpace(guess))
                   {
                         guess = (Console.ReadLine().ToUpper());
-                        if (guess.Length != 1)
+                        if (guess.Length != 1 || string.IsNullOrWhiteSpace(guess))
                         {
                               Console.WriteLine("Guess must be 1 letter");
                         }
