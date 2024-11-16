@@ -1,6 +1,7 @@
 ﻿#pragma warning disable CS8602 // Dereference of a possibly null reference.
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Hangman
 {
@@ -12,10 +13,10 @@ namespace Hangman
                   {
                         GameLogic.NewGame();
                         Console.WriteLine();
-                        Console.WriteLine("Do you want to play again? Y/N");
-                        string? input = null;
+                        string? input = "";
                         while (input != "Y" && input != "N")
                         {
+                              Console.WriteLine("Do you want to play again? Press Y/N");
                               input = Console.ReadLine().ToUpper();
                               if (input == "Y") { Console.WriteLine(); break; }
                               else if (input == "N")
@@ -28,7 +29,7 @@ namespace Hangman
                         if (input == "N") { break; }
                   }
                   Console.WriteLine("This window will automatically close in 3 seconds...");
-                  System.Threading.Thread.Sleep(3000);
+                  Thread.Sleep(3000);
             }
       }
 }

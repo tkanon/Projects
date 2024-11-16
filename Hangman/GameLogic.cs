@@ -7,8 +7,8 @@ namespace Hangman
             private static int wrongGuesses;
             private static int correctGuesses;
             private static int uniqueLetters;
-            private static List<string> targetWord = new List<string>();
-            private static List<string> guessedLetters = new List<string>();
+            private static List<char> targetWord = new List<char>();
+            private static List<char> guessedLetters = new List<char>();
             private static string fileName = "WordList.txt";
             public static void NewGame()
             {
@@ -20,14 +20,14 @@ namespace Hangman
 
                   string targetWordInput = GenerateWord();
 
-                  List<string> checkedLetters = new List<string>();
+                  List<char> checkedLetters = new List<char>();
                   for (int i = 0; i < targetWordInput.Length; i++)
                   {
-                        string letter = Convert.ToString(targetWordInput[i]); // For clarity of code
-                        targetWord.Add(letter);
-                        if (!checkedLetters.Contains(letter) && letter != " ")
+                        char character = targetWordInput[i]; // For clarity of code
+                        targetWord.Add(character);
+                        if (!checkedLetters.Contains(character) && character != ' ')
                         {
-                              checkedLetters.Add(letter);
+                              checkedLetters.Add(character);
                               uniqueLetters++;
                         }
                   }
@@ -39,15 +39,9 @@ namespace Hangman
                   {
                         PrintLines();
                         TakeGuess();
-                        if (wrongGuesses < 7)
-                        {
-                              Console.WriteLine($"Used letters: {string.Join(", ", guessedLetters)}");
-                        }
+                        if (wrongGuesses < 7) Console.WriteLine($"Used letters: {string.Join(", ", guessedLetters)}");
                   }
-                  if (correctGuesses == uniqueLetters)
-                  {
-                        Console.WriteLine($"{string.Join("", targetWord)} guessed, you won the game!");
-                  }
+                  if (correctGuesses == uniqueLetters) Console.WriteLine($"{string.Join("", targetWord)} guessed, you won the game!");
                   else if (wrongGuesses >= 7)
                   {
                         Console.WriteLine("Too many wrong guesses, you lost the game!");
@@ -57,36 +51,35 @@ namespace Hangman
             private static void PrintLines()
             {
                   Console.WriteLine();
-                  foreach (string letter in targetWord)
+                  foreach (char letter in targetWord)
                   {
                         if (guessedLetters.Contains(letter))
                         {
                               Console.Write(letter + " ");
                         }
-                        else if (letter == " ") { Console.Write(" "); }
-                        else
-                        {
-                              Console.Write("_ ");
-                        }
+                        else if (letter == ' ') { Console.Write(" "); }
+                        else Console.Write("_ ");
                   }
                   Console.WriteLine();
                   Console.WriteLine();
             }
             private static void TakeGuess()
             {
-                  Console.Write("Guess a letter: ");
-                  string? guess = "";
-                  while (guess.Length != 1 || string.IsNullOrWhiteSpace(guess))
+                  char guess = ' ';
+                  while (true)
                   {
-                        guess = (Console.ReadLine().ToUpper());
-                        if (guess.Length != 1 || string.IsNullOrWhiteSpace(guess))
+                        Console.Write("Guess a letter: ");
+                        string? input = Console.ReadLine();
+                        if (input.Length == 1 && !string.IsNullOrEmpty(input))
                         {
-                              Console.WriteLine("Guess must be 1 letter");
+                              guess = Convert.ToChar(input.ToUpper());
+                              if (guessedLetters.Contains(guess))
+                              {
+                                    Console.WriteLine("Letter already guessed, try again");
+                              }
+                              else break;
                         }
-                        else if (guessedLetters.Contains(guess))
-                        {
-                              Console.WriteLine("Letter already guessed, try again");
-                        }
+                        else Console.WriteLine("Guess must be 1 letter");
                   }
                   Console.WriteLine();
                   guessedLetters.Add(guess);
@@ -131,10 +124,7 @@ namespace Hangman
                   }
                   return targetWordInput;
             }
-            private static int WordCountFromFile(string fileName)
-            {
-                  return File.ReadLines(fileName).Count();
-            }
+            private static int WordCountFromFile(string fileName) { return File.ReadLines(fileName).Count(); }
             public static bool IsWordListUnique()                 // Add to main method for checking word list file,
             {                                                     // returns true if there is no repeated words
                   var linesRead = File.ReadLines(fileName);
